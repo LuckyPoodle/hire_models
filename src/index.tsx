@@ -1,11 +1,15 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense,useState} from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import SelectedModelContext from "./context/selectedModel";
+import { TypeSupermodelsFields } from "./utils/APIResponsesTypes";
 
 const Details = lazy(() => import("./components/Details"));
 const App = lazy(() => import("./App"));
+
+
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,10 +20,16 @@ const queryClient = new QueryClient({
   },
 });
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <BrowserRouter>
-    <QueryClientProvider client={queryClient}>
+const Index=()=>{
+
+  const selectedModel=useState(null as TypeSupermodelsFields|null )
+
+
+  return (
+    <BrowserRouter>
+  
+   <SelectedModelContext.Provider value={selectedModel}>
+   <QueryClientProvider client={queryClient}>
       <Suspense
         fallback={
           <div className="loading-pane">
@@ -33,5 +43,16 @@ root.render(
         </Routes>
       </Suspense>
     </QueryClientProvider>
+   </SelectedModelContext.Provider>
   </BrowserRouter>
+  )
+}
+
+
+
+const root = ReactDOM.createRoot(document.getElementById("root")!);
+
+
+root.render(
+  <Index />
 );

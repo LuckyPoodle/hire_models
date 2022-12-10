@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { TypeSupermodelsFields } from "../utils/APIResponsesTypes";
 
 
-const SelectedModelContext=createContext<[TypeSupermodelsFields,(selectedModel:TypeSupermodelsFields)=>void]>([
+const SelectedModelContext=createContext<[TypeSupermodelsFields|null,(selectedModel:TypeSupermodelsFields)=>void]>([
     {
         id:123,
         name:"Aegon",
