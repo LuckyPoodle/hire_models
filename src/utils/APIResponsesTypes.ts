@@ -17,7 +17,4 @@ export interface TypeSupermodelsFields {
 
 export type TypeSupermodels = Contentful.Entry<TypeSupermodelsFields>;
 
-export interface SubspeciesAPIResponse{
-    animal:AnimationPlaybackEvent;
-    breeds:string[];
-}
+

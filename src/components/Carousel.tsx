@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styled from 'styled-components';
 
 interface IProps{
   images:string[];
@@ -15,8 +16,8 @@ const Carousel = ({images}:IProps) => {
 
   const [active, setActive] = useState(0);
 
-  const handleClick = (event:React.MouseEvent<HTMLInputElement>) => {
-    console.log('CLICKED')
+  const handleClick = (event:React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+    console.log('CLICKED!!!')
     if (!(event.target instanceof HTMLElement)){
       return;
     }
@@ -26,9 +27,9 @@ const Carousel = ({images}:IProps) => {
   };
 
   return (
-    <div className="carousel">
+    <CarouselWrapper>
       <img src={images[active]} alt="model" />
-      <div className="carousel-smaller">
+      <SmallCarousel>
       {images.map((photo, index) => (
             // eslint-disable-next-line
             <img
@@ -36,13 +37,48 @@ const Carousel = ({images}:IProps) => {
               src={photo}
               className={index === active ? "active" : ""}
               alt="animal thumbnail"
-              onClick={(event)=>handleClick}
+              onClick={(e)=>{
+                handleClick(e);
+                console.log("HOHO")
+              }}
               data-index={index}
             />
           ))}
-      </div>
-    </div>
+      </SmallCarousel>
+    </CarouselWrapper>
   );
 };
 
 export default Carousel;
+
+
+const CarouselWrapper=styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 400px;
+  margin-top: 8px;
+
+  img {
+  max-width: 45%;
+  max-height: 400px;
+}
+`
+
+const SmallCarousel=styled.div`
+  width: 50%;
+  img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 15px;
+  cursor: pointer;
+  border: 2px solid #333;
+
+  img.active {
+  border-color: #333;
+  opacity: 0.6;
+}
+}
+`

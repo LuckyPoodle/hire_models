@@ -23,23 +23,15 @@ const fetchAModelFromContentful: QueryFunction<TypeSupermodelsFields, ["modeldet
 };
 
 const fetchSearch: QueryFunction<TypeSupermodelsFields[],
-  ["search", { name: string; nationality: string; location: string; }]> = async ({ queryKey }) => {
+  ["search", { nationality: string; location: string; }]> = async ({ queryKey }) => {
     console.log("HIIII in fetchsearch");
     try {
-      const { name, nationality, location } = queryKey[1];
+      const {nationality, location } = queryKey[1];
+      console.log(nationality);
+      console.log(location)
 
       let temp:TypeSupermodelsFields[] = [];
-      if (name.length > 0) {
-        const res = await contentfulclient.getEntries({
-          content_type: "supermodels",
-          "fields.name": name,
-        });
-
-        res.items.forEach((item:any) => {
-          temp.push(item.fields);
-        });
-        return temp;
-      } else if (nationality.length > 0) {
+      if (nationality.length > 0) {
         const res = await contentfulclient.getEntries({
           content_type: "supermodels",
           "fields.nationality": nationality,
