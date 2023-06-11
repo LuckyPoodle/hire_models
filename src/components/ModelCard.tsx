@@ -1,6 +1,5 @@
 
 import styled from 'styled-components';
-import { QUERIES } from "../utils/constants";
 
 
 interface IProps {
