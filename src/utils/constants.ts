@@ -18,6 +18,7 @@ export const COLORS = {
   },
   primary: '48deg 45% 96%',
   secondary: '240deg 60% 63%',
+  red:'0deg 60% 40%'
   
 };
 

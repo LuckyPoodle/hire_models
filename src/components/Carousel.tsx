@@ -54,7 +54,8 @@ export default Carousel;
 
 const CarouselWrapper=styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  flex-direction: column;
   align-items: center;
   height: 400px;
   margin-top: 8px;
@@ -67,6 +68,8 @@ const CarouselWrapper=styled.div`
 
 const SmallCarousel=styled.div`
   width: 50%;
+  display: flex;
+  justify-content: center;
   img {
   width: 100px;
   height: 100px;

@@ -1,22 +1,24 @@
 
 import styled from 'styled-components';
-import { QUERIES } from "../utils/constants";
-
+import { Link } from "react-router-dom";
 
 interface IProps {
   image: string;
   name: string;
+  id:string
 }
 
 
-const ModelCard = ({ image, name }: IProps) => {
+const ModelCard = ({ image, name, id }: IProps) => {
 
 
 
   return (
     <CardWrapper>
+      <Link to={`/details/${id}`}>
       <ModelImage src={image} />
       <ModelInfo><ModelName>{name}</ModelName></ModelInfo>
+      </Link>
     </CardWrapper>
   );
 };
