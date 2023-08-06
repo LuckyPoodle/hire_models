@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { COLORS } from '../utils/constants';
+import styled from "styled-components";
+import { COLORS } from "../utils/constants";
 
 export default styled.button`
   margin: 0;

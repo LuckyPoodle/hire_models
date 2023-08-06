@@ -1,8 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import { WEIGHTS } from '../utils/constants';
+import styled from "styled-components";
+import { WEIGHTS } from "../utils/constants";
 
-const Logo = (props:any) => {
+const Logo = (props: any) => {
   return (
     <Link href="/">
       <Wrapper {...props}>HireModels</Wrapper>

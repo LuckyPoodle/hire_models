@@ -17,12 +17,14 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
+    "@reach/dialog": "^0.18.0",
     "@tanstack/react-query": "4.10.1",
     "contentful": "^9.2.14",
     "env": "^0.0.2",
     "framer-motion": "^10.12.16",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-feather": "^2.0.10",
     "react-router-dom": "6.4.1",
     "react-scripts": "^5.0.1",
     "styled-components": "^6.0.0-rc.1"

@@ -1,16 +1,13 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { WEIGHTS } from '../utils/constants';
+import { WEIGHTS } from "../utils/constants";
 
-interface IProps{
-  children:any,
-  href:string
+interface IProps {
+  children: any;
+  href: string;
 }
 
-
-const NavLink = ({children,href}:IProps) => {
-  
+const NavLink = ({ children, href }: IProps) => {
   return (
     <Wrapper href={href}>
       <MainText> {children}</MainText>
@@ -50,7 +47,6 @@ const MainText = styled(Text)`
   --translate-from: 0%;
   --translate-to: -100%;
   padding: 0.1rem;
-  
 `;
 const HoverText = styled(Text)`
   --translate-from: 100%;

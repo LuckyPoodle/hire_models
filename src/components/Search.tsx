@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { NATIONALITIES, LOCATIONS, SPECIES } from "../utils/constants";
-import { Species } from '../utils/APIResponsesTypes';
+import { NATIONALITIES, LOCATIONS, QUERIES } from "../utils/constants";
 import Modellist from "./ModelsList";
 import { fetchSearch } from "../utils/contentfulUtils";
-import styled from 'styled-components';
+import styled from "styled-components";
 import Button from "./Button";
 
 const Search = () => {
@@ -15,7 +14,6 @@ const Search = () => {
   const results = useQuery(["search", requestParams], fetchSearch);
   const models = results?.data ?? [];
 
-
   return (
     <Wrapper>
       <SearchForm
@@ -25,40 +23,37 @@ const Search = () => {
           const object = {
             location: formData.get("location")?.toString() ?? "",
             nationality: formData.get("nationality")?.toString() ?? "",
-
           };
           setRequestParams(object);
         }}
       >
-        <div>
+        <SelectWrapper>
           <label htmlFor="location" className="">
-            Location :
+            Location
           </label>
-          &nbsp;
-          <Select
-            id="location" name="location">
+
+          <Select id="location" name="location">
             <option />
             {LOCATIONS.map((location) => (
               <option key={location}>{location}</option>
             ))}
           </Select>
-        </div>
+        </SelectWrapper>
 
-        <div>
+        <SelectWrapper>
           <label htmlFor="nationality" className="">
-            Nationality :
+            Nationality
           </label>
-          &nbsp;
+
           <Select id="nationality" name="nationality">
             <option />
             {NATIONALITIES.map((nationality) => (
               <option key={nationality}>{nationality}</option>
             ))}
           </Select>
-        </div>
+        </SelectWrapper>
 
         <Button>Filter Models</Button>
-
       </SearchForm>
       <Modellist models={models} />
     </Wrapper>
@@ -67,17 +62,25 @@ const Search = () => {
 
 export default Search;
 
-
 const Wrapper = styled.div`
- display: flex;
- flex-direction: column;
- margin: 1rem;
-
-`
-const Select=styled.select`
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+`;
+const Select = styled.select`
   appearance: none;
   border: none;
-`
+`;
+
+const SelectWrapper = styled.div`
+  display: flex;
+  gap: 5px;
+
+  @media ${QUERIES.tabletAndSmaller} {
+    flex-direction: column;
+    gap: 0px;
+  }
+`;
 
 const SearchForm = styled.form`
   margin: 1rem;
@@ -85,5 +88,10 @@ const SearchForm = styled.form`
   display: flex;
   justify-content: space-evenly;
   gap: 1rem;
-`
-
+  align-items: center;
+  @media ${QUERIES.tabletAndSmaller} {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 80%;
+  }
+`;

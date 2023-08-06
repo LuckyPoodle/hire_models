@@ -5,12 +5,11 @@ import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import SelectedModelContext from "./context/selectedModel";
 import { TypeSupermodelsFields } from "./utils/APIResponsesTypes";
-import GlobalStyles from './components/GlobalStyles';
+import GlobalStyles from "./components/GlobalStyles";
 import Header from "./components/Header";
+import SuperModelProvider from "./context/selectedModel";
 const Details = lazy(() => import("./components/Details"));
 const App = lazy(() => import("./App"));
-
-
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,13 +21,11 @@ const queryClient = new QueryClient({
 });
 
 const Index = () => {
-
-  const selectedModel = useState(null as TypeSupermodelsFields | null)
-
+  // const selectedModel = useState(null as TypeSupermodelsFields | null)
 
   return (
     <BrowserRouter>
-      <SelectedModelContext.Provider value={selectedModel}>
+      <SuperModelProvider>
         <QueryClientProvider client={queryClient}>
           <Suspense
             fallback={
@@ -41,10 +38,10 @@ const Index = () => {
           </Suspense>
         </QueryClientProvider>
         <GlobalStyles />
-      </SelectedModelContext.Provider>
+      </SuperModelProvider>
     </BrowserRouter>
-  )
-}
+  );
+};
 
 function AppRoutes() {
   return (
@@ -52,15 +49,9 @@ function AppRoutes() {
       <Route path="/details/:id" element={<Details />} />
       <Route path="/" element={<App />} />
     </Routes>
-  )
+  );
 }
-
-
-
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 
-
-root.render(
-  <Index />
-);
+root.render(<Index />);

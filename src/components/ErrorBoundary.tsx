@@ -1,13 +1,15 @@
-import { Component,ErrorInfo,ReactElement } from "react";
+import { Component, ErrorInfo, ReactElement } from "react";
 
-
-class ErrorBoundary extends Component<{children:ReactElement,errorComponent:ReactElement}> {
+class ErrorBoundary extends Component<{
+  children: ReactElement;
+  errorComponent: ReactElement;
+}> {
   state = { hasError: false };
   static getDerivedStateFromError() {
     return { hasError: true };
   }
 
-  componentDidCatch(error:Error, info:ErrorInfo) {
+  componentDidCatch(error: Error, info: ErrorInfo) {
     //send error to errors tracking services like TrackJS or NewRelic
     console.error("ErrorBoundary caught an error ", error, info);
   }
